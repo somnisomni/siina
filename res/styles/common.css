@@ -1,0 +1,49 @@
+/*
+ * Common stylesheet
+ *
+ *   ⓒ 20-700***** *** a.k.a. SDSK
+ */
+
+
+/*** Common styles for ALL elements ***/
+* {
+	box-sizing: border-box;
+	font-family: "Noto Sans KR", "Noto Sans CJK KR", "Noto Sans", "한컴 고딕", "나눔고딕", "맑은 고딕", sans-serif;
+	text-rendering: geometricPrecision;
+}
+/*** === ***/
+
+/*** Common styles for HTML and BODY element ***/
+html, body {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+
+	user-select: none;
+	user-drag: none;
+	-webkit-user-drag: none;
+}
+
+/** Styles for disabled features **/
+body.no_filter, body.no_filter *, body.no_filter *:before, body.no_filter *:after {
+	filter: none !important;
+	backdrop-filter: none !important;
+}
+
+body.no_transition, body.no_transition *, body.no_transition *:before, body.no_transition *:after {
+	transition: none !important;
+	animation: none !important;
+}
+/** === **/
+/*** === ***/
+
+/*** Specific styles for CODE element ***/
+code {
+	font-family: Consolas, "Lucida Console", monospace !important;
+}
+/*** === ***/
+
+/*** Specific styles for HR element ***/
+hr { border: none; border-bottom: solid #333 1px; }
+/*** === ***/

@@ -1,0 +1,28 @@
+사운드폰트 JSON 포맷
+
+{
+	"id": [string],									// 사운드폰트의 고유명(ID), 필수 항목
+	"display_name": [string],				// UI에 표시되는 이름, 필수 항목
+	"author": [string],							// 사운드폰트 제작자
+	"description": [string],					// 사운드폰트 설명 (HTML 태그 사용 가능)
+	"attributes": {									// 사운드폰트 설정 그룹, 필수 항목
+		"master_amp": {							// 메인 앰프
+		    "value": [number 0~1],		// 메인 앰프 값, 0~1 사이의 값, 기본값 1
+			"adsr": {										// 메인 앰프 ADSR
+				"attack": [number],			// Attack 값, 기본값 0, 단위 초
+				"decay": [number],			// Decay 값, 기본값 0, 단위 초
+				"sustain": [number 0~1],	// Sustain 값, 0~1 사이의 값, 기본값 1
+				"release": [number]			// Release 값, 기본값 0, 단위 초
+			}
+		},
+		"osc": [											// 파형 발진기 목록 그룹, 필수 항목, 적어도 1개 항목 필요
+			{
+				"waveform": ["sine" | "sawtooth" | "square" | "triangle" | "noise"],	// 파형 종류, 필수 항목, 반드시 5가지 중 한 가지
+				"amp": [number 0~1],		// 발진기 앰프(출력), 0~1 사이의 값, 기본값 1
+				"octave": [number],			// 주파수 옥타브 상대값 (파형 종류가 노이즈일 경우 무시됨), 기본값 0(건반의 옥타브를 따름)
+				"freq_offset": [number]	// 주파수 오프셋 절대값 (파형 종류가 노이즈일 경우 무시됨), 기본값 0, 단위 Hz
+			},
+			...
+		]
+	}
+}

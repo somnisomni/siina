@@ -1,0 +1,186 @@
+<!--
+	『Siina』 ― Interactive Piano Roll Web Application
+
+	THIS WEB APP SHOULD BE USED ONLY WITHIN REPUBLIC OF KOREA MILITARY ******** *******.
+	이 웹 앱은 대한민국 국군 ***** 내에서만 사용되어야 합니다.
+
+	=====
+	
+	Developed & Designed by 20-700***** *** (공군 병 812기) a.k.a. 「somni / SDSK」
+
+	추후 원 개발자가 기능 추가나 유지보수를 할 수 없게 될 경우에 한해,
+	원 개발자의 이름 등의 정보를 변경 및 삭제하지 않고 앱 명칭을 유지한다는 조건 하에 타인의 수정/업데이트 및 군 **** 내 배포를 허용합니다.
+	단, 이 웹 앱의 소스 코드 전체 또는 일부를 다른 프로그램/앱/서비스의 코드로 사용될 수 없습니다.
+
+	웹 앱 소스 코드는 제3자의 인터넷 배포를 무조건 금지합니다.
+
+	=====
+	
+	인터넷 GitHub 리포지토리 (예상) : https://github.com/somnisomni/siina
+	
+	=====
+	
+	이 웹 앱은 『음악 코딩 v11』 웹 앱의 소스 코드 일부를 참고하여 제작하였습니다.
+		Thanks to *** (공군 병 775기)
+	http://***.**.***/*****
+	
+	=====
+	
+	이 웹 앱은 Chrome을 이용하여 개발되었습니다.
+	가급적 인트라넷 내에서 배포되는 최신 Chrome 버전을 이용해주세요.
+	새로운 Microsoft Edge(크로미엄 엣지)도 '이론상' 작동하는데 문제 없습니다.
+-->
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<title>Siina</title>
+		
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<!-- JSON -->
+		<script src="json/builtin_soundfonts.js"></script>
+		<script src="json/flyout_settings.js"></script>
+		
+		<!-- Scripts (core) -->
+		<script src="scripts/globals.js"></script>
+		<script src="scripts/core/util.js"></script>
+		<script src="scripts/core/audio.js"></script>
+		<script src="scripts/core/soundfont.js"></script>
+		<script src="scripts/core/engine.js"></script>
+		<script src="scripts/core/keyboard.js"></script>
+		<script src="scripts/core/settings.js"></script>
+		
+		<!-- Scripts (GUI) -->
+		<script src="scripts/ui/piano_roll.js"></script>
+		<script src="scripts/ui/sound_control.js"></script>
+		<script src="scripts/ui/async_dialog.js"></script>
+		<script src="scripts/ui/flyout.js"></script>
+		<script src="scripts/ui/flyout_settings.js"></script>
+		<script src="scripts/ui/flyout_bpm.js"></script>
+		
+		<!-- Stylesheets -->
+		<link rel="stylesheet" href="res/fonts/notosanskr.css">
+		<link rel="stylesheet" href="res/fonts/font-awesome.min.css">
+		<link rel="stylesheet" href="res/styles/common.css">
+		<link rel="stylesheet" href="res/styles/main.css">
+		<link rel="stylesheet" href="res/styles/sound_control.css">
+		<link rel="stylesheet" href="res/styles/piano_roll.css">
+		<link rel="stylesheet" href="res/styles/async_dialog.css">
+		<link rel="stylesheet" href="res/styles/flyout.css">
+	</head>
+	
+	<body>
+		<noscript><h1>이 웹 앱은 JavaScript가 활성화된 환경에서만 작동합니다. JavaScript를 활성화 해주세요.</h1></noscript>
+	
+		<div id="app">			
+			<nav id="siina_top_container">
+				<div id="title_container"><i class="fa fa-circle" aria-hidden="true"></i> Siina <small> ― 공군 **** 배포판</small></div>
+				
+				<div id="soundfont_voice_container">
+					<div id="soundfont_container">
+						<span style="font-weight: 700; margin-right: 0.25em">사운드폰트 : </span>
+						<select id="soundfont_select_list"></select>
+						
+						<i id="soundfont_save" class="fa fa-save soundfont_tool_item" title="사운드폰트 저장"></i>
+						<i id="soundfont_new" class="fa fa-plus-circle soundfont_tool_item" title="새로운 사운드폰트 만들기"></i>
+						<i id="soundfont_copy" class="fa fa-copy soundfont_tool_item" title="사운드폰트 복제"></i>
+						<i id="soundfont_load" class="fa fa-download soundfont_tool_item" title="사운드폰트 불러오기"></i>
+						<i id="soundfont_save_file" class="fa fa-upload soundfont_tool_item" title="사운드폰트 내보내기 (파일로 저장)"></i>
+						<i id="soundfont_remove" class="fa fa-trash soundfont_tool_item" title="사운드폰트 제거"></i>
+					</div>
+					<div id="voice_container">
+						<span style="font-weight: 700">Voices :</span>
+						<span id="voice_current">0</span> <span style="font-size: 0.75em">/ <span id="voice_max">0</span></span>
+					</div>
+				</div>
+				
+				<div class="icons_container" style="margin-left: 0">
+					<a id="icon_bpm" class="flyout_initiator" data-flyout-content-name="bpm" href="#" title="BPM 측정"><i class="fa fa-heartbeat" aria-hidden="true"></i></a>
+				</div>
+
+				<div class="icons_container">
+					<a id="icon_settings" class="flyout_initiator" data-flyout-content-name="settings" href="#" title="설정"><i class="fa fa-gear" aria-hidden="true"></i></a>
+					<a id="icon_info" class="flyout_initiator" data-flyout-content-name="info" href="#" title="정보"><i class="fa fa-info" aria-hidden="true"></i></a>
+				</div>
+			</nav>
+			
+			<div id="sound_control_container">
+				<div class="left">
+					<div id="osc_container" class="subcontainer">
+						<div class="subcontainer_title"><i class="fa fa-circle-o-notch"></i> 발진기 <small>(오실레이터)</small></div>
+
+						<div id="osc_container_content"></div>
+						
+						<div id="osc_add_container"><i class="fa fa-plus"></i> 발진기 추가</div>
+					</div>
+				</div>
+				<div class="center">
+					<div id="soundfont_info_container" class="subcontainer">
+						<div class="subcontainer_title"><i class="fa fa-info-circle"></i> 사운드폰트 정보</div>
+
+						<div id="soundfont_info_content"></div>
+					</div>
+				</div>
+				<div class="right">
+					<div id="master_container" class="subcontainer">
+						<div class="subcontainer_title"><i class="fa fa-volume-up"></i> 마스터</div>
+						
+						<div id="master_container_content"></div>
+					</div>
+				</div>
+			</div>
+			
+			<div id="piano_container">
+				<div id="piano_tools_container">
+					<div id="piano_tools">
+						<span data-tool-name="octave_1down" class="piano_tool_item toggleable">1↓옥타브 동시연주</span>
+						<span data-tool-name="octave_1up" class="piano_tool_item toggleable">1↑옥타브 동시연주</span>
+					</div>
+					
+					<div id="piano_display" title="피아노 롤 숨기기/보이기">
+						<i class="fa fa-chevron-down"></i>
+					</div>
+				</div>
+				<div id="piano_roll_container"></div>
+			</div>
+		</div>
+			
+		<div id="right_flyout_container">
+			<div class="flyout_content" data-name="settings">
+				<div id="settings_flyout_container" class="flyout_content_inner">
+					<h1><i class="fa fa-gear fa-spin" aria-hidden="true"></i> 설정</h1>
+					<p style="font-weight: 300">※ 변경 사항은 자동으로 저장됩니다.</p>
+				</div>
+			</div>
+			
+			<div class="flyout_content" data-name="info">
+				<iframe src="subpages/information.html"></iframe>
+			</div>
+
+			<div class="flyout_content" data-name="bpm">
+				<div id="bpm_flyout_container" class="flyout_content_inner">
+					<h1><i class="fa fa-heartbeat" aria-hidden="true"></i> BPM 측정기</h1>
+					<p style="font-weight: 300">※ 스페이스 바 키로 버튼을 누를 수 있습니다.<br>※ 3초 동안 버튼을 누르지 않으면 초기화됩니다.</p>
+
+					<div id="bpm_click_container">
+						<div id="bpm_click_button">
+							<div id="bpm_click_button_text">
+								<span id="bpm_click_text">클릭!</span>
+								<span id="bpm_int"></span>
+								<span id="bpm_decimal"></span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!-- Siina initialization script -->
+		<script defer src="scripts/init.js"></script>
+	</body>
+</html>
+
+
+<!-- 7KCV7Iug7KCB7Jy866GcIO2emOuToCDrgqDsnbQg66eO7JWY642YIOq1sCDsg53tmZzsnbQg7J207KCcIOuBneydhCDtlqXtlbQg64us66Ck6rCA6rOgIOyeiOyKteuLiOuLpC4g7IKs656M65WM66y47JeQIO2emOuTpOyXiOyngOunjCDsgqzrnozrjZXrtoTsl5Ag7Z6Y7J2EIOuCvCDsiJgg7J6I7JeI7Iq164uI64ukLiDsnbQg66mU7Iuc7KeA66W8IOuztOyLoCDrqqjrk6Ag67aE65Ok7J20IOustOyCrOyghOyXre2VmOyLpCDsiJgg7J6I6ri4IOuwlOudvOqyoOyKteuLiOuLpC4= -->
+<!-- 67O07J6YIOqygyDsl4bsp4Drp4wgU2lpbmHrpbwg7IKs7Jqp7ZW07KO87IWU7IScIOqwkOyCrO2VqeuLiOuLpCE= -->
+<!-- VHdpdHRlciA6IEBzb21uaV9zb21uaSAgLyAgSG9tZXBhZ2UgOiBodHRwczovL3NvbW5pLm9uZSAgLyAgR2l0SHViIDogc29tbmlzb21uaQ== -->

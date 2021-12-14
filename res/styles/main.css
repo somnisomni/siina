@@ -1,0 +1,180 @@
+/*
+ * Main stylesheet
+ *
+ *   ⓒ 20-700***** *** a.k.a. SDSK
+ */
+
+* {	
+	--nav-height: 50px;
+	--piano-roll-height: 33vh;
+	--piano-tools-height: 48px;
+}
+
+@media (max-height: 600px) {
+	* { --piano-roll-height: 200px; }
+}
+
+html, body {	
+	color: #333;
+	background-color: #F8F8F8;
+	
+	overflow-y: hidden;
+}
+
+body > #app {
+	width: 100%;
+	height: 100%;
+	
+	transform: translateZ(0.00001px);
+	transition: transform 0.5s cubic-bezier(0, 0, 0, 1), opacity 0.5s cubic-bezier(0, 0, 0, 1), filter 0.5s cubic-bezier(0, 0, 0, 1);
+}
+
+/*** Top Container ***/
+#siina_top_container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	position: fixed ;
+	left: 0;
+	right: 0;
+	top: 0;
+	height: var(--nav-height);
+	padding: 0.33em 0.75em;
+	z-index: 100;
+}
+
+#siina_top_container > div {
+	display: flex;
+	align-items: center;
+	overflow: hidden;
+	
+	height: 100%;
+	padding: 0.25em 0.75em;
+	box-shadow: 0 0.225em 0.425em rgba(0, 0, 0, 0.33);
+	border-radius: 65536px;
+	
+	background: rgba(255, 255, 255, 0.75);
+	backdrop-filter: blur(5px);
+}
+
+/* Title Area */
+#siina_top_container #title_container {
+	display: block;
+	min-width: 120px;
+	font-size: calc(var(--nav-height) / 2.5);
+	font-weight: 700;
+}
+
+#siina_top_container #title_container i {
+	margin-right: 0.25em;
+	cursor: pointer;
+}
+
+#siina_top_container #title_container small {
+	display: inline-block;
+	font-weight: lighter;
+	font-size: 0.75em;
+}
+
+/* Soundfont & Voice area */
+#siina_top_container #soundfont_voice_container {
+	display: flex;
+	flex-grow: 1;
+	align-items: center;
+	justify-content: space-between;
+	
+	margin: 0 1em;
+}
+
+#siina_top_container #soundfont_container {
+	display: flex;
+	align-items: center;
+}
+
+#siina_top_container #soundfont_container #soundfont_select_list {
+	max-width: 200px;
+	border: none;
+	border-bottom: solid #333 2px;
+	color: #333;
+	background: transparent;
+	
+	padding: 0.05em 2em 0.05em 0.25em;
+	margin-right: 0.25em;
+}
+
+#siina_top_container #soundfont_container .soundfont_tool_item {
+	cursor: pointer;
+	padding: 0.25em;
+	margin: 0 0.25em;
+	width: calc(var(--nav-height) / 2);
+	height: calc(var(--nav-height) / 2);
+	text-align: center;
+	border-radius: 100%;
+	
+	transition: background-color 0.25s, color 0.25s, opacity 0.25s;
+}
+
+#siina_top_container #soundfont_container .soundfont_tool_item.disabled {
+	pointer-events: none;
+	cursor: initial;
+	opacity: 0.5;
+}
+
+#siina_top_container #soundfont_container .soundfont_tool_item:hover {
+	background-color: #666;
+	color: white;
+}
+
+#siina_top_container #soundfont_container .soundfont_tool_item:active {
+	background-color: #333;
+	color: white;
+}
+
+#siina_top_container #soundfont_container #soundfont_save {
+	width: calc(var(--nav-height));
+	padding: 0.25em 0.5em;
+	border-radius: 65535px;
+	background-color: #EAEAEA;
+}
+
+#siina_top_container #soundfont_container #soundfont_save:hover {
+	background-color: rgb(24, 48, 96, 0.5);
+}
+
+#siina_top_container #soundfont_container #soundfont_save:active {
+	background-color: rgb(24, 48, 96, 1);
+}
+
+/* Misc Icons area */
+#siina_top_container .icons_container {
+	flex-shrink: 0;
+	padding: 0;
+	margin-left: 0.5rem;
+	margin-right: 0.5rem;
+}
+
+#siina_top_container .icons_container a {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	
+	height: 100%;
+	width: calc(var(--nav-height) - (0.33rem * 2));
+	
+	font-size: 1.25rem;
+	text-decoration: none;
+	color: #333;
+	
+	transition: color 0.33s, background 0.33s, box-shadow 0.33s;
+}
+
+#siina_top_container .icons_container a:hover {
+	color: white;
+	background: #333;
+	box-shadow: 0 0 0.5rem #333;
+}
+
+#siina_top_container .icons_container a:active {
+	box-shadow: 0 0 0.25rem #333;
+}
+/*** === ***/

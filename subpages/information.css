@@ -1,0 +1,87 @@
+/*
+ * Stylesheet for Information subpage
+ *
+ *   ⓒ 20-700***** *** a.k.a. SDSK
+ */
+
+html, body {
+	background: transparent;
+	color: #333;
+}
+
+::-webkit-scrollbar {
+	background: #F8F8F8;
+	width: 7.5px;
+}
+
+::-webkit-scrollbar-thumb {
+	background: #666;
+}
+
+a {
+	position: relative;
+	color: #333;
+	text-decoration: none;
+	transition: padding 0.33s cubic-bezier(0, 0, 0, 1), color 0.33s cubic-bezier(0, 0, 0, 1);
+}
+
+a:before {
+	content: '';
+	position: absolute;
+	width: 100%;
+	height: 2px;
+	left: 0;
+	bottom: 0;
+	background: #333;
+	opacity: 0.8;
+	z-index: -1;
+	transition: height 0.33s cubic-bezier(0, 0, 0, 1);
+}
+
+a:hover {
+	padding: 0 0.25em;
+	color: white;
+}
+
+a:hover:before {
+	height: 100%;
+}
+
+h1 { font-size: 1.5em; }
+h2 { font-size: 1.33em; }
+h3 { font-size: 1.125em; }
+p { font-size: 1em; }
+small { font-size: 0.75em; }
+
+#content { padding: 0.75rem 1rem; }
+
+.changelog_version h3 small {
+	font-weight: 400;
+}
+
+.changelog_version ul {
+	padding-inline-start: 30px;
+	margin-block-start: 0.5em;
+	margin-block-end: 0.5em;
+}
+
+.dev_changelog_title {
+	list-style: "▼  ";
+	cursor: pointer;
+}
+
+.dev_changelog_title:hover {
+	text-decoration: underline;
+}
+
+.dev_changelog_title + .dev_changelog_content {
+	display: none;
+}
+
+.dev_changelog_title.open {
+	list-style: "▲  ";
+}
+
+.dev_changelog_title.open + .dev_changelog_content {
+	display: inherit;
+}
