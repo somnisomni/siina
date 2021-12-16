@@ -20,7 +20,7 @@ Siina
 ---------
  버전 v1.0.0까지의 Siina는 **로컬 환경** *(서버 없이 소스 코드를 내려받아 사용자의 웹 브라우저에서 직접 실행)* 에서만 작동될 것을 목적으로 개발되었습니다.
 
- [여기를 참고하거나](https://sosoeasy.tistory.com/318), [이 링크로 직접 다운로드하여](https://github.com/somnisomni/siina/archive/refs/heads/main.zip) 해당 버전의 소스  다운로드 및 압축 해제한 후, `siina.html`을 웹 브라우저로 실행해주세요.
+ [여기를 참고하거나](https://sosoeasy.tistory.com/318), [이 링크로 직접 다운로드하여](https://github.com/somnisomni/siina/archive/refs/heads/old-v1.0.0.zip) 해당 버전의 소스  다운로드 및 압축 해제한 후, `siina.html`을 웹 브라우저로 실행해주세요.
 
  이 외 자세한 사항은 [QuickStart.txt](QuickStart.txt) 파일을 참고해주세요.
 
