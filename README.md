@@ -8,7 +8,7 @@ Siina
 
  군 복무 기간 중에 심심풀이로 개발을 시작하여 약 1년 동안 업데이트를 했던 토이 프로젝트입니다.
  
- 현재 [GitHub Pages로 v1.0.0 버전을 배포](https://somnisomni.github.io/siina/siina.html)하고 있습니다. 하지만 후술된 바와 같이 Siina는 로컬 환경에서만 작동될 것을 목적으로 개발되었기에, 일부 기능이 제대로 작동되지 않을 수 있습니다. [Siina v1.0.0을 사용해보려면 여기를 클릭하세요!](https://somnisomni.github.io/siina/siina.html)
+ 현재 [GitHub Pages로 v1.0.0 버전을 배포](https://somnisomni.github.io/siina/siina.html)하고 있습니다. 하지만 후술된 바와 같이 Siina는 **PC 상에서의 로컬 환경**에서만 작동될 것을 목적으로 개발되었기에, 일부 기능이 제대로 작동되지 않거나 오작동할 수 있습니다. [Siina v1.0.0을 사용해보려면 여기를 클릭하세요!](https://somnisomni.github.io/siina/siina.html)
 
 버전 v1.0.0
 -----------
