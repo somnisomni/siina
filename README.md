@@ -24,6 +24,12 @@ Siina
 
  이 외 자세한 사항은 [QuickStart.txt](QuickStart.txt) 파일을 참고해주세요.
 
+알려진 오류
+-----------
+### Flyout의 바깥 부분을 눌러도 닫히지 않음
+ - Flyout의 바깥 부분에 마우스 버튼을 누를 때의 이벤트(`MouseDown`) 콜백에서, [Flyout을 닫을지 판단하는 부분](https://github.com/somnisomni/siina/blob/f4016318fc3a571e9eded2267f285164880f00f1/scripts/ui/flyout.js#L11)에서 `mouseEvent.path`가 쓰였는데, 이는 비표준 기능으로 현재 [Chrome 및 기타 브라우저에서 더 이상 지원되지 않고 삭제](https://chromestatus.com/feature/5726124632965120)(*deprecated*)되어 개발자 콘솔 상에 오류를 표시하고 정상적으로 동작하지 않습니다.  
+ - `Event.path`와 동일한 값을 제공하는 표준 함수로 [`Event.composedPath()`](https://developer.mozilla.org/en-US/docs/Web/API/Event/composedPath)가 있어 대체만 하면 되지만, 이 브랜치(버전)은 보존용이므로 소스 코드를 수정하지 않습니다.
+
 트리비아
 --------
  그간 개발한 Siina의 소스 코드를 인터넷에 올리기 위해 **도합 <ins>60페이지</ins> 가까이 프린트하여(...) 가져왔고**[*사진 첨부 예정*]**, 손수 옮길 예정**이였습니다...**만!** 익명의 사용자분께서 이 버전의 소스 코드를 전부 디지털로 보내주신 덕분에 고생을 덜 수 있었습니다. 감사합니다!
