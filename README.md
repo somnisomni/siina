@@ -22,8 +22,6 @@ Siina
 
  [여기를 참고하거나](https://sosoeasy.tistory.com/318), [이 링크로 직접 다운로드하여](https://github.com/somnisomni/siina/archive/refs/heads/old-v0.0.4.zip) 해당 버전의 소스 다운로드 및 압축 해제한 후, `siina.html`을 웹 브라우저로 실행해주세요.
 
- 이 외 자세한 사항은 [QuickStart.txt](QuickStart.txt) 파일을 참고해주세요.
-
 알려진 오류
 -----------
 ### Flyout의 바깥 부분을 눌러도 닫히지 않음

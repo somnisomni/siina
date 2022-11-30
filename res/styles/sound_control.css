@@ -1,0 +1,28 @@
+/*
+ * Stylesheet for Soundfont control area
+ *
+ *   ⓒ 20-700***** *** a.k.a. SDSK
+ */
+
+#sound_control_container {
+	width: 100%;
+	height: calc(100% - (var(--piano-roll-height) + var(--piano-tools-height)));
+	padding-top: calc(var(--nav-height) + 20px); /* nav height + (nav top margin * 2) */
+	padding-left: calc(0.5rem + 1vw);
+	padding-right: calc(0.5rem + 1vw);
+	padding-bottom: 2rem;
+	margin-bottom: calc(var(--piano-roll-height) + var(--piano-tools-height));
+	overflow-x: hidden;
+	overflow-y: auto;
+	
+	scroll-behavior: smooth;
+}
+
+#sound_control_container::-webkit-scrollbar {
+	background: #F8F8F8;
+	width: 7.5px;
+}
+
+#sound_control_container::-webkit-scrollbar-thumb {
+	background: #333;
+}

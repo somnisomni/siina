@@ -1,0 +1,146 @@
+/*
+ * Main stylesheet
+ *
+ *   ⓒ 20-700***** *** a.k.a. SDSK
+ */
+
+* {
+	box-sizing: border-box;
+	font-family: "Noto Sans KR", "Noto Sans CJK KR", "Noto Sans", "한컴 고딕", "나눔고딕", "맑은 고딕", sans-serif;
+	text-rendering: geometricPrecision;
+
+	--nav-height: 50px;
+	--piano-roll-height: 33vh;
+	--piano-tools-height: 48px;
+}
+
+@media (max-height: 600px) {
+	* { --piano-roll-height: 200px; }
+}
+
+html, body {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	color: #333;
+	background-color: #F8F8F8;
+	user-select: none;
+	user-drag: none;
+	-webkit-user-drag: none;
+}
+
+body.no_filter, body.no_filter *, body.no_filter *:before, body.no_filter *:after {
+	filter: none !important;
+	backdrop-filter: none !important;
+}
+
+body.no_transition, body.no_transition *, body.no_transition *:before, body.no_transition *:after {
+	transition: none !important;
+	animation: none !important;
+}
+
+body > #app {
+	width: 100%;
+	height: 100%;
+	
+	transform: translateZ(0.00001px);
+	transition: transform 0.5s cubic-bezier(0, 0, 0, 1), opacity 0.5s cubic-bezier(0, 0, 0, 1), filter 0.5s cubic-bezier(0, 0, 0, 1);
+}
+
+hr { border: none; border-bottom: solid #333 1px; }
+
+/*** Top Container ***/
+#siina_top_container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	position: fixed ;
+	left: 0;
+	right: 0;
+	top: 0;
+	height: var(--nav-height);
+	padding: 0.33em 0.75em;
+}
+
+#siina_top_container > div {
+	display: flex;
+	align-items: center;
+	overflow: hidden;
+	
+	height: 100%;
+	padding: 0.25em 0.75em;
+	box-shadow: 0 0.225em 0.425em rgba(0, 0, 0, 0.33);
+	border-radius: 65536px;
+	
+	background: rgba(255, 255, 255, 0.75);
+	backdrop-filter: blur(5px);
+}
+
+/* Title Area */
+#siina_top_container #title_container {
+	display: block;
+	font-size: calc(var(--nav-height) / 2.5);
+	font-weight: 700;
+}
+
+#siina_top_container #title_container i {
+	margin-right: 0.25em;
+	cursor: pointer;
+}
+
+#siina_top_container #title_container small {
+	font-weight: lighter;
+	font-size: 0.75em;
+}
+
+/* Soundfont & Voice area */
+#siina_top_container #soundfont_voice_container {
+	display: flex;
+	flex-grow: 1;
+	align-items: center;
+	justify-content: space-between;
+	
+	margin: 0 1em;
+}
+
+
+#siina_top_container #soundfont_container #soundfont_select_list {
+	border: none;
+	border-bottom: solid #333 2px;
+	color: #333;
+	background: transparent;
+	
+	padding: 0.05em 2em 0.05em 0.25em;
+}
+
+/* Misc Icons area */
+#siina_top_container #icons_container {
+	padding: 0;
+}
+
+#siina_top_container #icons_container a {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	
+	height: 100%;
+	width: calc(var(--nav-height) - (0.33rem * 2));
+	
+	font-size: 1.25rem;
+	text-decoration: none;
+	color: #333;
+	
+	transition: color 0.33s, background 0.33s, box-shadow 0.33s;
+}
+
+#siina_top_container #icons_container a:hover {
+	color: white;
+	background: #333;
+	box-shadow: 0 0 0.5rem #333;
+}
+
+#siina_top_container #icons_container a:active {
+	box-shadow: 0 0 0.25rem #333;
+}
+/*** === ***/

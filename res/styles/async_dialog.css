@@ -1,0 +1,32 @@
+/*
+ * Stylesheet for AsyncDialog
+ *
+ *   ⓒ 20-700***** *** a.k.a. SDSK
+ */
+
+dialog:not([open]) {
+	display: block !important;
+	opacity: 0;
+
+	pointer-events: none;
+	user-select: none;
+	user-drag: none;
+	-webkit-user-drag: none;
+}
+
+dialog#async_dialog {
+	position: fixed;
+	border: none;
+	box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.33);
+	border-radius: 1rem;
+	padding: 1.5em;
+	font-size: 1.25rem;
+	
+	transform: scale(1.25);
+	transition: transform 0.5s cubic-bezier(0, 0, 0, 1), opacity 0.5s cubic-bezier(0, 0, 0, 1);
+}
+
+dialog#async_dialog[open] {
+	transform: initial;
+	opacity: 1;
+}

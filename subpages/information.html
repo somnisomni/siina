@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<title>Siina ─ Information & Changelog</title>
+		
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<!-- Stylesheets -->
+		<link rel="stylesheet" href="../res/fonts/notosanskr.css">
+		<style>
+			* {
+				box-sizing: border-box;
+				font-family: "Noto Sans KR", "Noto Sans CJK KR", "Noto Sans", "한컴 고딕", "나눔고딕", "맑은 고딕", sans-serif;
+				text-rendering: geometricPrecision;
+
+				user-select: none;
+				user-drag: none;
+				-webkit-user-drag: none;
+			}
+
+			html, body {
+				padding: 0;
+				margin: 0;
+				background: transparent;
+				color: #333;
+			}
+
+			code { font-family: Consolas, "Lucida Console", monospace !important; }
+
+			::-webkit-scrollbar {
+				background: #F8F8F8;
+				width: 7.5px;
+			}
+
+			::-webkit-scrollbar-thumb {
+				background: #666;
+			}
+
+			a {
+				position: relative;
+				color: #333;
+				text-decoration: none;
+				transition: padding 0.33s cubic-bezier(0, 0, 0, 1), color 0.33s cubic-bezier(0, 0, 0, 1);
+			}
+
+			a:before {
+				content: '';
+				position: absolute;
+				width: 100%;
+				height: 2px;
+				left: 0;
+				bottom: 0;
+				background: #333;
+				opacity: 0.8;
+				z-index: -1;
+				transition: height 0.33s cubic-bezier(0, 0, 0, 1);
+			}
+
+			a:hover {
+				padding: 0 0.25em;
+				color: white;
+			}
+
+			a:hover:before {
+				height: 100%;
+			}
+
+			hr { border: none; border-bottom: solid #333 1px; }
+
+			h1 { font-size: 1.5em; }
+			h2 { font-size: 1.33em; }
+			h3 { font-size: 1.125em; }
+			p { font-size: 1em; }
+			small { font-size: 0.75em; }
+
+			#content { padding: 0.75rem 1rem; }
+
+			.changelog_version h3 small {
+				font-weight: 400;
+			}
+
+			.changelog_version ul {
+				padding-inline-start: 30px;
+				margin-block-start: 0.5em;
+				margin-block-end: 0.5em;
+			}
+
+			.dev_changelog_title {
+				list-style: "▼  ";
+				cursor: pointer;
+			}
+
+			.dev_changelog_title:hover {
+				text-decoration: underline;
+			}
+
+			.dev_changelog_title + .dev_changelog_content {
+				display: none;
+			}
+
+			.dev_changelog_title.open {
+				list-style: "▲  ";
+			}
+
+			.dev_changelog_title.open + .dev_changelog_content {
+				display: inherit;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="content">
+			<div id="main">
+				<h1 style="margin-top: 0.5em">● Siina <small style="font-size: 0.75em; font-weight: 400">─ 피아노 롤 웹 앱</small></h1>
+				<p style="font-size: 0.9em">Made by 20-700***** ***<br><small style="font-size: 0.9em; margin-left: 1em; font-weight: 300">a.k.a. 「SDSK」</small></p>
+				<p>version <span style="font-weight: bold">v<span id="version">★</span></span><br><small style="font-size: 0.75em; margin-left: 1em">Chrome/Chromium version <span style="font-weight: bold">v<span id="chrome_version">☆</span></span></small></p>
+				<p>★ 최신 버전은 <a href="http://***.**.***/*****">*** 카페 MSM-Wiki</a>에 배포됩니다. <small>(공군 **** 로그인 및 카페 가입 필요)</small></p>
+			</div>
+			
+			<hr>
+			
+			<div id="changelog">
+				<h2>변경사항</h2>
+				
+				<div id="changelog_content_container"></div>
+
+				<div style="font-size: 0.9em; font-weight: 300">* Flyout : 지금과 같이 화면 옆에서 슬라이드하여 나오는 메뉴 및 영역을 말합니다.</div>
+			</div>
+		</div>
+		
+		<script src="../json/changelog.js"></script>
+		<script>
+			(() => {
+				const $ce = (tag) => document.createElement(tag);
+				const $q = (query) => document.querySelector(query);
+				const $qa = (query) => document.querySelectorAll(query);
+
+				const changelogJsonObject = JSON.parse(JSON_CHANGELOG);
+				
+				changelogJsonObject.forEach((v) => $q("#content #changelog #changelog_content_container").append(buildSingleChangelogItem(v)));
+
+				$qa("a").forEach((e) => e.target = "_blank");
+				$qa("#content #changelog .dev_changelog_title").forEach((e) => e.addEventListener("click", () => e.classList.toggle("open")));
+				$q("#content #main #chrome_version").innerText = /Chrom.+\/(\d+\.\d+\.\d+\.\d+)/.exec(navigator.userAgent.split(" ").find((x) => /Chrom.+\/\d+\.\d+\.\d+\.\d+/.test(x)))[1] || "(Not on Chrome!)";
+				$q("#content #main #version").innerText = new URLSearchParams(window.location.search).get("ver");
+				
+				function buildSingleChangelogItem(jsonObject) {
+					const container = $ce("div");
+					container.classList.add("changelog_version");
+					
+					/* Category Title */
+					const title = $ce("h3");
+					title.innerText = `${jsonObject["version_string"]} `;
+					const titleSmall = $ce("small");
+					titleSmall.innerText = `─ ${jsonObject["release_date"]}`;
+					
+					title.append(titleSmall);
+					container.append(title);
+					/* == */
+					
+					/* Changelog content */
+					const mainUl = $ce("ul");
+					jsonObject["changelogs"].forEach((v) => {
+						const categoryTitleLi = $ce("li");
+						if(v["dev_changelog"] == true) {
+							categoryTitleLi.classList.add("dev_changelog_title");
+							categoryTitleLi.innerText = "개발자용 세부 변경사항";
+						} else {
+							categoryTitleLi.innerText = v["title"];
+						}
+						mainUl.append(categoryTitleLi);
+						
+						if(v["content"]) {
+							const categoryUl = $ce("ul");
+							if(v["dev_changelog"] == true) categoryUl.classList.add("dev_changelog_content");
+							v["content"].forEach((c) => {
+								const itemLi = $ce("li");
+								itemLi.innerHTML = c;
+								
+								categoryUl.append(itemLi);
+							});
+							mainUl.append(categoryUl);
+						}
+					});
+					container.append(mainUl);
+					/* == */
+					
+					return container;
+				}
+			})();
+		</script>
+	</body>
+</html>
