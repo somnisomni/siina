@@ -10,15 +10,6 @@ Siina
  
  현재 [GitHub Pages로 v1.0.0 버전을 배포](https://somnisomni.github.io/siina/siina.html)하고 있습니다. 하지만 후술된 바와 같이 Siina는 **PC 상에서의 로컬 환경**에서만 작동될 것을 목적으로 개발되었기에, 일부 기능이 제대로 작동되지 않거나 오작동할 수 있습니다. [Siina v1.0.0을 사용해보려면 여기를 클릭하세요!](https://somnisomni.github.io/siina/siina.html)
 
-이 README를 보시는 현역 장병분들께
----------------------------------
- 국방의 의무를 다하기 위해 팔도 각지에서 각자 맡은 바를 다하고 계시는 모든 장병분들 불철주야 고생이 많으십니다!  
- 전역 *(미복귀 휴가)* 을 하고 1년이 넘은 시점이 되니 제가 올렸던 이 토이 프로젝트가 여러 장병분들 사이에서 근무의 무료함을 해소해주고 있는지 사실 궁금해지긴 하네요..! ~~어떻게 직접 확인해볼 수 있는 방법도 없고~~
- 
- 의향이 있으시다면, **군 인트라넷 내에서 제 프로젝트의 근황(?)이 어떤지 제보해주시면 좋겠어요!** 장병분들의 국방 퀘스트가 무미건조하다는 것은 마찬가지란건 저 또한 매우 잘 알지만, 여러분의 제보가 저의 무미건조한 일상에 물을 뿌려줄 수 있습니다😇
-
- 📧 me [at] somni.one / 🕊️ [Twitter @somni_somni](https://twitter.com/somni_somni) / 🐘 [Mastodon @somni@planet.moe](https://planet.moe/@somni)
-
 버전 v1.0.0
 -----------
  본 버전(**v1.0.0**, 브랜치 [`old-v1.0.0`](https://github.com/somnisomni/siina/tree/old-v1.0.0))는 전역 전 미복귀 휴가를 실시하기 전에 업데이트된 마지막 버전이고, 직전 버전(**v0.0.4-preview**, 브랜치 [`old-v0.0.4`](https://github.com/somnisomni/siina/tree/old-v0.0.4))에 비해 <ins>오실레이터 부분에 WebAudio API를 적극 이용한 것</ins>이 주된 변경 사항입니다.
@@ -29,7 +20,7 @@ Siina
 ---------
  버전 v1.0.0까지의 Siina는 **로컬 환경** *(서버 없이 소스 코드를 내려받아 사용자의 웹 브라우저에서 직접 실행)* 에서만 작동될 것을 목적으로 개발되었습니다.
 
- [여기를 참고하거나](https://sosoeasy.tistory.com/318), [이 링크로 직접 다운로드하여](https://github.com/somnisomni/siina/archive/refs/heads/old-v1.0.0.zip) 해당 버전의 소스  다운로드 및 압축 해제한 후, `siina.html`을 웹 브라우저로 실행해주세요.
+ [여기를 참고하거나](https://sosoeasy.tistory.com/318), [이 링크로 직접 다운로드하여](https://github.com/somnisomni/siina/archive/refs/heads/old-v1.0.0.zip) 해당 버전의 소스 다운로드 및 압축 해제한 후, `siina.html`을 웹 브라우저로 실행해주세요.
 
  이 외 자세한 사항은 [QuickStart.txt](QuickStart.txt) 파일을 참고해주세요.
 
